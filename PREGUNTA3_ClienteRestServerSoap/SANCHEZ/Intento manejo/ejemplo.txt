@@ -1,0 +1,23 @@
+String url = "http://localhost:8080/GameSoftWR/webresources/productors";
+
+// Para obtener lista:
+RestClient.RestResponse<List<Producto>> response = RestClient.get(
+    url,
+    new TypeReference<List<Producto>>() {}
+);
+
+if (response.statusCode == 200) {
+    for (Producto p : response.body) {
+        System.out.println(p.getNombre());
+    }
+} else {
+    System.out.println("Error: " + response.statusCode);
+}
+
+// Para agregar:
+Producto nuevo = new Producto();
+nuevo.setNombre("Nuevo producto");
+
+RestClient.RestResponse<Void> postResponse = RestClient.post(url, nuevo);
+
+System.out.println("POST status: " + postResponse.statusCode);
