@@ -30,7 +30,7 @@
     <module>TransitSoftAppPrueba</module>
         
     <module>mavenproject1</module>
-      
+    <module>TransitSoftBusinessClient</module>
   </modules>
   
 </project>
