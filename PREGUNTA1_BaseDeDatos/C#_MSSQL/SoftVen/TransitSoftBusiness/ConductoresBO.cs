@@ -31,5 +31,27 @@ namespace SoftVenBusiness
             };
             return conductoresDAO.Insertar(conductor);
         }
+
+        public void Modificar(ConductoresDTO conductor)
+        {
+            conductoresDAO.Modificar(conductor);
+        }
+
+        public void Eliminar(int id)
+        {
+            ConductoresDTO conductor = new ConductoresDTO();
+            conductor.ConductorId = id;
+            conductoresDAO.Eliminar(conductor);
+        }
+
+        public ConductoresDTO ObtenerPorId(int id)
+        {
+            return conductoresDAO.ObtenerPorId(id);
+        }
+
+        public List<ConductoresDTO> ListarTodos()
+        {
+            return conductoresDAO.ListarTodos().ToList();
+        }
     }
 }

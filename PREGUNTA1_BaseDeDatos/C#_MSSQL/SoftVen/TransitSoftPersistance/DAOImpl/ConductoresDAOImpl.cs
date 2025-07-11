@@ -63,13 +63,14 @@ namespace SoftVenPersistance.DAOImpl
         {
             this.conductor = new ConductoresDTO();
             this.conductor.ConductorId = lector.GetInt32(0);
-            this.conductor.Paterno = lector.GetString(1);
+            this.conductor.Paterno = lector.IsDBNull(1) ? null : lector.GetString(1);
             this.conductor.Materno = lector.IsDBNull(2) ? null : lector.GetString(2);
-            this.conductor.Nombres = lector.GetString(3);
-            this.conductor.NumLicencia = lector.GetString(4);
-            this.conductor.TipoLicenciaId = lector.GetInt32(5);
-            this.conductor.PuntosAcumulados = lector.GetInt32(6);
+            this.conductor.Nombres = lector.IsDBNull(3) ? null : lector.GetString(3);
+            this.conductor.NumLicencia = lector.IsDBNull(4) ? null : lector.GetString(4);
+            this.conductor.TipoLicenciaId = lector.IsDBNull(5) ? 0 : lector.GetInt32(5);
+            this.conductor.PuntosAcumulados = lector.IsDBNull(6) ? 0 : lector.GetInt32(6);
         }
+
 
         protected override void LimpiarObjetoDelResultSet()
         {
