@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using SoftVen.DAOImpl.Util;
 using SoftVen.Db;
-using SoftVen.Model;
 
 namespace SoftVen.DAOImpl
 {
@@ -116,7 +115,13 @@ namespace SoftVen.DAOImpl
                 {
                     this.AbrirConexion();
                 }
-                this.comando = DBManager.Instance.CrearComando() ;
+                this.comando = DBManager.Instance.CrearComando();
+                this.comando.Connection = this.conexion;
+                if (this.usarTransaccion)
+                {
+                    this.comando.Transaction = this.transaccion;
+                }
+
                 string sql = "";
                 switch (tipoOperacion)
                 {
@@ -164,6 +169,12 @@ namespace SoftVen.DAOImpl
             }
             finally
             {
+                if (this.lector != null && !this.lector.IsClosed)
+                    this.lector.Close();
+
+                if (this.comando != null)
+                    this.comando.Dispose();
+
                 this.CerrarConexion();
             }
             return resultado;
@@ -328,15 +339,21 @@ namespace SoftVen.DAOImpl
         {
             int resultado = -1;
             String sql = DBManager.Instance.RetornarSQLParaUltimoAutoGenerado();
+
             this.ColocarSQLenComando(sql);
-            this.EjecutarConsultaEnBD();
-            if (this.lector.Read())
+
+            using (DbDataReader lectorTmp = this.comando.ExecuteReader())
             {
-                resultado = this.lector.GetInt32(0);
+                if (lectorTmp.Read())
+                {
+                    resultado = Convert.ToInt32(lectorTmp[0]);
+                }
             }
-            this.lector.Close();
+
             return resultado;
         }
+
+
 
         protected void ObtenerPorId()
         {
@@ -359,6 +376,12 @@ namespace SoftVen.DAOImpl
             }
             finally
             {
+                if (this.lector != null && !this.lector.IsClosed)
+                    this.lector.Close();
+
+                if (this.comando != null)
+                    this.comando.Dispose();
+
                 this.CerrarConexion();
             }
         }

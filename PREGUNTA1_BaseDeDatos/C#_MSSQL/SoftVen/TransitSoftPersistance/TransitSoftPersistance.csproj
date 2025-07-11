@@ -42,12 +42,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAOImpl\ConductoresDAOImpl.cs" />
     <Compile Include="DAOImpl\DAOImplBase.cs" />
-    <Compile Include="DAOImpl\ProductoDAOImpl.cs" />
+    <Compile Include="DAOImpl\InfraccionesDAOImpl.cs" />
+    <Compile Include="DAOImpl\RegistroInfraccionesDAOImpl.cs" />
+    <Compile Include="DAOImpl\ReportesInfraccionesDAOImpl.cs" />
+    <Compile Include="DAOImpl\TiposLicenciasDAOImpl.cs" />
     <Compile Include="DAOImpl\Util\Columna.cs" />
     <Compile Include="DAOImpl\Util\TipoOperacionDML.cs" />
-    <Compile Include="DAO\ProductoDAO.cs" />
+    <Compile Include="DAOImpl\VehiculosDAOImpl.cs" />
+    <Compile Include="DAOImpl\VehiculosPorConductorDAOImpl.cs" />
+    <Compile Include="DAO\ConductoresDAO.cs" />
+    <Compile Include="DAO\InfraccionesDAO.cs" />
+    <Compile Include="DAO\RegistroInfraccionesDAO.cs" />
+    <Compile Include="DAO\ReportesInfraccionesDAO.cs" />
     <Compile Include="DAO\TiposLicenciasDAO.cs" />
+    <Compile Include="DAO\VehiculosDAO.cs" />
+    <Compile Include="DAO\VehiculosPorConductorDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
