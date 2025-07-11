@@ -47,6 +47,7 @@
     <Compile Include="DAOImpl\Util\Columna.cs" />
     <Compile Include="DAOImpl\Util\TipoOperacionDML.cs" />
     <Compile Include="DAO\ProductoDAO.cs" />
+    <Compile Include="DAO\TiposLicenciasDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
